@@ -1,0 +1,23 @@
+.how_it {
+    background-image: url("homepage-4.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+
+    color: #000000;
+}
+
+.how_it_text {
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0 #0d0d0d, 2px -2px 0 #0d0d0d, -2px 2px 0 #0d0d0d, -2px -2px 0 #0d0d0d, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+
+}
+
+.how_it_h2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 0 #0d0d0d, 2px -2px 0 #0d0d0d, -2px 2px 0 #0d0d0d, -2px -2px 0 #0d0d0d, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5, -2px 0px 0 #4074b5, 0px -2px 0 #4074b5;
+}
