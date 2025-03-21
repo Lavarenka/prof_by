@@ -7,7 +7,7 @@ import {Button} from "antd";
 
 export default function ForWhomSection() {
     return (
-        <div className="for-who-section py-10">
+        <div className="for-who-section py-10" id="ForWho">
             <div className="fix_block">
                 <div className="my-10 flex justify-center"><h2 className='text-xl font-semibold'>Кому подойдет</h2>
                 </div>

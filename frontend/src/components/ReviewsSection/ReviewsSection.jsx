@@ -8,7 +8,7 @@ import user_2 from './img_review/user_2.png'
 
 export default function ReviewsSection() {
     return (
-        <div className="review_section p-10">
+        <div className="review_section p-10" id="Review">
             <div className="fix_block">
                 <div className="my-10 flex  justify-center"><h2 className='text-xl font-semibold'>Отзывы</h2></div>
                 <div className="">

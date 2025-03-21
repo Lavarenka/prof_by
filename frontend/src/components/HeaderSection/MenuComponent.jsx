@@ -23,23 +23,23 @@ const items = [
     {
         key: 'alipay3',
         label: (
-            <a href="https://ant.design" rel="noopener noreferrer">
+            <a href="#Profession" rel="noopener noreferrer">
                 Профессии
             </a>
         ),
     },
     {
-        key: 'alipay4',
+        key: 'ForWho',
         label: (
-            <a href="https://ant.design" rel="noopener noreferrer">
+            <a href="#ForWho" rel="noopener noreferrer">
                 Для кого
             </a>
         ),
     },
     {
-        key: 'alipay5',
+        key: 'Review',
         label: (
-            <a href="https://ant.design" rel="noopener noreferrer">
+            <a href="#Review" rel="noopener noreferrer">
                 Отзывы
             </a>
         ),

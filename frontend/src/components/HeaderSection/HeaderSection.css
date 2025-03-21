@@ -10,6 +10,20 @@
     color: white;
 }
 
+.header__menu{
+
+
+}
+
+.header__menu .ant-menu {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    width: 60%;
+}
+
+
 .right_color_block {
 
 
