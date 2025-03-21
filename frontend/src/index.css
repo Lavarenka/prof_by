@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth; /* Плавный скролл */
+}
+
+:root {
+    font-family: "Comfortaa", sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+}
+
+.wrapper {
+
+
+}
+
+
+
+.fix_block {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    /*border: 1px solid white;*/
+
+
+}
+
+li{
+    list-style: inside;
+}

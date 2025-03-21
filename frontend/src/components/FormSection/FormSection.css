@@ -1,0 +1,68 @@
+.form_section {
+    color: white;
+    background-image: url("noutbuk_chashka_ochki_114948_1920x1080.jpg");
+    background-size: cover;
+}
+
+
+.consultation__form {
+    display: flex;
+    padding: 0 50px;
+}
+
+.consultation__text {
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 300;
+}
+
+.consultation__input {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 60px;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 1.33;
+    margin: 0 20px 30px 0;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+
+}
+@media (max-width: 1280px) {
+  .consultation__input {
+    margin: 0 0 30px 0;
+  }
+}
+@media (max-width: 1280px) {
+  .consultation__form {
+    flex-direction: column;
+
+  }
+}
+
+.consultation__button {
+    padding: 0 40px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+    min-height: 60px;
+}
+
+._button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    color: rgb(255, 255, 255);
+    background-color: rgb(65, 59, 68);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px 0px;
+}
+
+._button:hover {
+    background-color: #fff;
+    color: rgb(65, 59, 68);
+}
