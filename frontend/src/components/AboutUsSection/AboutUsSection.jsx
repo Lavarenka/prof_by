@@ -9,8 +9,8 @@ export default function AboutUsSection() {
 
             <div className="grid lg:grid-cols-2 lg:gap-2 my-5">
                 <FadeComponent direction="left" delay={100}>
-                    <div className="px-10">
-                        <div className=""><h2>Попробуй себя в любой профессии за 1 день!</h2></div>
+                    <div className="px-10  "> 
+                        <div className="font-bold"><h2>Попробуй себя в любой профессии за 1 день!</h2></div>
                         <br/>
                         <ul>
                             <li>Вдохновляем на перемены.</li>
@@ -27,8 +27,8 @@ export default function AboutUsSection() {
                     </div>
                 </FadeComponent>
                 <FadeComponent direction="right" delay={300}>
-                    <div className="px-2 mt-40">
-                        <div className="">С нами вы:</div>
+                    <div className="lg:px-2 mt-10 lg:mt-40 px-10">
+                        <div className="font-bold">С нами вы:</div>
                         <br/>
                         <ul>
                             <li>Осуществите свою мечту стать актером/актрисой, грумером, фотомоделью, певцом/певицей или

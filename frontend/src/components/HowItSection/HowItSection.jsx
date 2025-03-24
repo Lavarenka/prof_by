@@ -6,7 +6,7 @@ export default function HowItSection() {
         <>
             <div className="how_it" id='HowIt'>
                 <FadeComponent direction="bottom" delay={100}>
-                    <div className="fix_block py-20 px-20">
+                    <div className="fix_block md:py-20 md:px-20 p-5">
                         <div className="my-10 flex justify-center "><h2 className=' how_it_h2 font-semibold'>Как происходит</h2></div>
                         <br/>
                         <div className="text-lg">

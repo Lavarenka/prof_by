@@ -3,7 +3,8 @@
     max-width: 400px; /* Размер контейнера */
     max-height: 300px;
     overflow: hidden; /* Скрываем всё, что выходит за границы */
-    border-radius: 10px; /* Закругленные углы */
+    
+   
 }
 
 
@@ -13,10 +14,12 @@
     height: 100%;
     object-fit: cover; /* Чтобы изображение заполняло контейнер */
     transition: transform 0.3s ease; /* Анимация увеличения */
+    
 }
 
 .image-container:hover .image {
     transform: scale(1.1); /* Увеличение при наведении */
+    
 }
 
 .overlay {
@@ -29,7 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     transition: opacity 0.3s ease; /* Анимация появления */
 }
 
@@ -39,6 +42,7 @@
 
 .text {
     color: white; /* Цвет текста */
-    font-size: 1.5rem; /* Размер текста */
+    font-size: 1.3rem; /* Размер текста */
     text-align: center;
+    padding: 5px ;
 }

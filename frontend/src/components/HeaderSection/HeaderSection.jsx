@@ -30,7 +30,7 @@ export default function HeaderSection() {
                         <div
                             className="flex md:flex-row items-center flex-col flex-auto md:justify-normal justify-center md:my-0 my-2">
                             <div className="top-header__logo md:mx-6">Будь кем хочешь</div>
-                            <div className="top-header__button mt-15 md:mt-0"><a href="#form"><Button>Хочу учавствовать</Button></a>
+                            <div className="top-header__button mt-15 md:mt-0"><a href="#form"><Button>Хочу участвовать</Button></a>
                             </div>
                         </div>
                         <div className=" hidden md:flex flex-auto md:justify-end justify-center  px-2 ">
@@ -63,7 +63,7 @@ export default function HeaderSection() {
                         {/*</div>*/}
                     </div>
                     <div className="header_bottom mt-10 md:mt-50">
-                        <h2>Смени профессию на 1 день</h2>
+                        <h2 className="ps-2">Смени профессию на 1 день</h2>
                     </div>
                 </div>
             </div>

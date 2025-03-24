@@ -10,7 +10,7 @@ import {Button} from "antd";
 
 export default function ProfessionsSection() {
     return (
-        <div className="prof_section my-15" id="Profession">
+        <div className="prof_section md:my-15 my-5 p-2" id="Profession">
             <div className="fix_block ">
                 <div className="my-10 flex justify-center"><h2 className='text-xl font-semibold'>Список профессий на выбор:</h2></div>
 

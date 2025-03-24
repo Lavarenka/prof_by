@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  frontend:
+    services:
+      frontend:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        platform: linux/amd64  # Явное указание платформы

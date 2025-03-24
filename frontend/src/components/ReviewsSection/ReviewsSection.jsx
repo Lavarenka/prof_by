@@ -12,13 +12,13 @@ export default function ReviewsSection() {
             <div className="fix_block">
                 <div className="my-10 flex  justify-center"><h2 className='text-xl font-semibold'>Отзывы</h2></div>
                 <div className="">
-                    <Carousel arrows autoplay infinite={true}>
+                    <Carousel arrows autoplay infinite={true}  dots={false}>
                         <div>
                             <div className="">
                                 <div className=" image-container_review  m-auto my-5"><img src={user_1} alt=""/></div>
                                 <div className="px-5">
                                     <div className="text-center text-xl font-semibold my-2">Михаил, IT-специалист:</div>
-                                    <div className="italic text-center">Проект "Будь кем хочешь" смог удивить меня
+                                    <div className="italic text-center ">Проект "Будь кем хочешь" смог удивить меня
                                         готовностью браться за
                                         разнообразные запросы. Мне хотелось получить опыт и знаний столярном деле, так
                                         как я хотел изготовить рабочий стол. И мне организовали встречу с мастером,
@@ -36,7 +36,7 @@ export default function ReviewsSection() {
                                     <div className="text-center text-xl font-semibold my-2">Екатерина, главный
                                         экономист:
                                     </div>
-                                    <div className="italic text-center">Этот проект был мне полезен. Ну где можно ещё
+                                    <div className="italic text-center ">Этот проект был мне полезен. Ну где можно ещё
                                         пойти и попробовать
                                         себя в профессии и понять ваше или нет. Мне он помог собрать все кусочки
                                         информации воедино и структурировать те знания, которые у меня были. Все, что
@@ -53,7 +53,7 @@ export default function ReviewsSection() {
                                     <div className="text-center text-xl font-semibold my-2">Екатерина, главный
                                         экономист:
                                     </div>
-                                    <div className="italic text-center">Этот проект был мне полезен. Ну где можно ещё
+                                    <div className="italic text-center ">Этот проект был мне полезен. Ну где можно ещё
                                         пойти и попробовать
                                         себя в профессии и понять ваше или нет. Мне он помог собрать все кусочки
                                         информации воедино и структурировать те знания, которые у меня были. Все, что

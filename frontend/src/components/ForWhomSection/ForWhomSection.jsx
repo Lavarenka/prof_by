@@ -7,16 +7,16 @@ import {Button} from "antd";
 
 export default function ForWhomSection() {
     return (
-        <div className="for-who-section py-10" id="ForWho">
+        <div className="for-who-section p-5 md:py-10" id="ForWho">
             <div className="fix_block">
                 <div className="my-10 flex justify-center"><h2 className='text-xl font-semibold'>Кому подойдет</h2>
                 </div>
-                <div className="flex justify-center"><p className="text-xl font-semibold">Всем — взрослым, школьникам и
+                <div className="px-5 text-center"><p className="text-xl font-semibold">Всем — взрослым, школьникам и
                     студентам — независимо от возраста, пола и
                     профессии:</p>
                 </div>
                 <div className="flex my-10 flex-wrap">
-                    <div className=" flex my-2 flex-auto justify-center">
+                    <div className="  flex my-2 flex-auto justify-center">
                         <HoverImageWithText
                             imageUrl={for_who_img1} // URL изображения
                             text="Тем, кто хочет сменить деятельность и пока еще мало знаком с новой профессией" // Текст
