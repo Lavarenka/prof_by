@@ -2,7 +2,8 @@
 
 
 html {
-  scroll-behavior: smooth; /* Плавный скролл */
+    scroll-behavior: smooth;
+    /* Плавный скролл */
 }
 
 :root {
@@ -12,12 +13,8 @@ html {
 
 }
 
-.wrapper {
 
-
-}
-
-.border_{
+.border_ {
     border: 2px solid black;
 }
 
@@ -34,6 +31,6 @@ html {
 
 }
 
-li{
+li {
     list-style: inside;
 }
