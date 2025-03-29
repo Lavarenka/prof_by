@@ -11,6 +11,7 @@ import ForWhomSection from "./components/ForWhomSection/ForWhomSection.jsx";
 import ReviewsSection from "./components/ReviewsSection/ReviewsSection.jsx";
 import FormSection from "./components/FormSection/FormSection.jsx";
 import FooterSection from "./components/FooterSection/FooterSection.jsx";
+import ContactsList from './components/ApiContactSection/ApiContactSection.jsx';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <ReviewsSection/>
             <FormSection/>
             <FooterSection/>
+            <ContactsList/>
 
 
         </div>
