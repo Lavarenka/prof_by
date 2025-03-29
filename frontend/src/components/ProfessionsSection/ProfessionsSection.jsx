@@ -10,7 +10,7 @@ export default function ProfessionsSection() {
     const [data, setData] = useState(null); // Состояние для хранения данных
     const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки
     const [error, setError] = useState(null); // Состояние для хранения ошибок
-    const res = 100
+ 
 
     useEffect(() => {
         const apiUrl = '/api/professions/';
