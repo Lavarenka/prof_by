@@ -1,69 +1,101 @@
+import React, { useEffect, useState } from 'react';
 import './ReviewsSection.css'
-import {Carousel} from 'antd';
+import { Carousel } from 'antd';
 import user_1 from './img_review/user_1.png'
-import user_2 from './img_review/user_2.png'
+import axios from 'axios';
+
 
 
 
 
 export default function ReviewsSection() {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const apiUrl = '/api/reviews/';
+
+        axios.get(apiUrl)
+            .then((response) => {
+                // Форматируем URL изображений
+                const formattedData = response.data.map(item => ({
+                    ...item,
+                    image: item.image
+                        ? item.image.startsWith('http')
+                            ? item.image
+                            : `http://${item.image}` // Добавляем http://
+                        : null
+                }));
+                setData(formattedData);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка: {error.message}</div>;
+    if (!data) return <div>Нет данных</div>;
+
     return (
         <div className="review_section p-10" id="Review">
             <div className="fix_block">
                 <div className="my-10 flex  justify-center"><h2 className='text-xl font-semibold'>Отзывы</h2></div>
                 <div className="">
-                    <Carousel arrows autoplay infinite={true}  dots={false}>
-                        <div>
-                            <div className="">
-                                <div className=" image-container_review  m-auto my-5"><img src={user_1} alt=""/></div>
-                                <div className="px-5">
-                                    <div className="text-center text-xl font-semibold my-2">Михаил, IT-специалист:</div>
-                                    <div className="italic text-center ">Проект "Будь кем хочешь" смог удивить меня
-                                        готовностью браться за
-                                        разнообразные запросы. Мне хотелось получить опыт и знаний столярном деле, так
-                                        как я хотел изготовить рабочий стол. И мне организовали встречу с мастером,
-                                        который отнесся к этому серьезно и поделился со мной бесценными знаниями и
-                                        опытом, за что я очень благодарен проекту! Мне до сих пор очень симпатична его
-                                        идея. Вы большие молодцы!
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="">
-                                <div className="  image-container_review  m-auto my-5"><img src={user_2} alt=""/></div>
-                                <div className="px-5">
-                                    <div className="text-center text-xl font-semibold my-2">Екатерина, главный
-                                        экономист:
-                                    </div>
-                                    <div className="italic text-center ">Этот проект был мне полезен. Ну где можно ещё
-                                        пойти и попробовать
-                                        себя в профессии и понять ваше или нет. Мне он помог собрать все кусочки
-                                        информации воедино и структурировать те знания, которые у меня были. Все, что
-                                        узнала на проекте, планирую применять уже при поиске новой работы.
+                    <Carousel arrows autoplay infinite={true} dots={false}>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="">
-                                <div className="  image-container_review  m-auto my-5"><img src={user_2} alt=""/></div>
-                                <div className="px-5">
-                                    <div className="text-center text-xl font-semibold my-2">Екатерина, главный
-                                        экономист:
-                                    </div>
-                                    <div className="italic text-center ">Этот проект был мне полезен. Ну где можно ещё
-                                        пойти и попробовать
-                                        себя в профессии и понять ваше или нет. Мне он помог собрать все кусочки
-                                        информации воедино и структурировать те знания, которые у меня были. Все, что
-                                        узнала на проекте, планирую применять уже при поиске новой работы.
 
+
+
+
+                        {data.map((item) => (
+                            <div>
+                                <div className="">
+                                    <div className=" image-container_review  m-auto my-5">{item.image && (
+                                        <img
+                                            src={item.image}
+                                            alt={`Фото ${item.name}`}
+
+                                            onError={(e) => {
+                                                console.error('Не удалось загрузить изображение:', e.target.src);
+                                                e.target.src = 'https://via.placeholder.com/200';
+                                                e.target.style.border = '2px solid #ff0000'; // Красная рамка при ошибке
+                                            }}
+                                        />
+                                    )}</div>
+                                    <div className="px-5">
+                                        <div className="text-center text-xl font-semibold my-2">{item.name}: {item.profession}</div>
+                                        <div className="italic text-center ">{item.review}</div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+
+                            /* <div key={item.id} >
+                            {item.image && (
+                                <img
+                                    src={item.image}
+                                    alt={`Фото ${item.name}`}
+                            
+                                    onError={(e) => {
+                                        console.error('Не удалось загрузить изображение:', e.target.src);
+                                        e.target.src = 'https://via.placeholder.com/200';
+                                        e.target.style.border = '2px solid #ff0000'; // Красная рамка при ошибке
+                                    }}
+                                />
+                            )}
+                            <div style={{ textAlign: 'left' }}>
+                                <p><strong>Имя:</strong> {item.name}</p>
+                                <p><strong>Профессия:</strong> {item.profession}</p>
+                                <p><strong>Отзыв:</strong> {item.review}</p>
+                            </div>
+                            </div> */
+
+
+                        ))}
 
 
                     </Carousel>

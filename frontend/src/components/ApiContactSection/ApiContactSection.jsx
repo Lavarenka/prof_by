@@ -2,47 +2,61 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function UrlApi() {
-  const [data, setData] = useState(null); // Состояние для хранения данных
-  const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки
-  const [error, setError] = useState(null); // Состояние для хранения ошибок
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // URL бэкенда
-    const apiUrl = 'http://localhost:8000/api/contacts/';
-
-    // Выполняем запрос
+    const apiUrl = 'http://localhost:8000/api/reviews/';
+    
     axios.get(apiUrl)
       .then((response) => {
-        setData(response.data); // Сохраняем данные в состояние
-        setLoading(false); // Загрузка завершена
+        // Форматируем URL изображений
+        const formattedData = response.data.map(item => ({
+          ...item,
+          image: item.image 
+            ? item.image.startsWith('http') 
+              ? item.image 
+              : `http://${item.image}` // Добавляем http://
+            : null
+        }));
+        setData(formattedData);
+        setLoading(false);
       })
       .catch((error) => {
-        setError(error); // Сохраняем ошибку
-        setLoading(false); // Загрузка завершена
+        setError(error);
+        setLoading(false);
       });
-  }, []); // Пустой массив зависимостей, чтобы запрос выполнялся один раз
+  }, []);
 
-  // Отображение состояния загрузки
   if (loading) return <div>Загрузка...</div>;
-
-  // Отображение ошибки
   if (error) return <div>Ошибка: {error.message}</div>;
+  if (!data) return <div>Нет данных</div>;
 
-  // Отображение данных
   return (
     <div>
-      <h1>Данные из бэкенда</h1>
-      {/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
-        {data.map((item) => (
-            <>
-            <p>name: {item.name}</p>
-
-                <br/>
-            </>
-
-
-        ))}
+      <h1>Отзывы</h1>
+      {data.map((item) => (
+        <div key={item.id} >
+          {item.image && (
+            <img 
+              src={item.image}
+              alt={`Фото ${item.name}`}
+              
+              onError={(e) => {
+                console.error('Не удалось загрузить изображение:', e.target.src);
+                e.target.src = 'https://via.placeholder.com/200';
+                e.target.style.border = '2px solid #ff0000'; // Красная рамка при ошибке
+              }}
+            />
+          )}
+          <div style={{ textAlign: 'left' }}>
+            <p><strong>Имя:</strong> {item.name}</p>
+            <p><strong>Профессия:</strong> {item.profession}</p>
+            <p><strong>Отзыв:</strong> {item.review}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
-

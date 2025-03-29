@@ -27,7 +27,7 @@ function App() {
             <ReviewsSection/>
             <FormSection/>
             <FooterSection/>
-            <ContactsList/>
+            {/* <ContactsList/> */}
 
 
         </div>
