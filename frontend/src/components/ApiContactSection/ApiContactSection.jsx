@@ -1,80 +1,39 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import res from './apiFooter.jsx'
 
-export default function FooterSection({ contactId, contactName }) {
-    const [contact, setContact] = useState(null);
+export default function FooterSection2() {
+    const [contacts, setContacts] = useState([]);
     const [links, setLinks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки
+    const [error, setError] = useState(null); // Состояние для хранения ошибок
 
     useEffect(() => {
-        // Функция для получения контакта
-        const fetchContact = async () => {
-            try {
-                let contactData;
-                
-                // Определяем какой запрос делать
-                if (contactId) {
-                    const response = await axios.get(`/api/contacts/${contactId}/`);
-                    contactData = [response.data];
-                } 
-                else if (contactName) {
-                    const response = await axios.get(`/api/contacts/?name=${contactName}`);
-                    contactData = response.data;
-                } 
-                else {
-                    const response = await axios.get('/api/contacts/');
-                    contactData = response.data;
-                }
+        // Создаем массив запросов
+        const contactsRequest = axios.get('/api/contacts/');
+        const linksRequest = axios.get('/api/contacts/links/');
 
-                // Получаем ссылки
-                const linksResponse = await axios.get('/api/contacts/links/');
-                
-                setContact(contactData);
+        // Выполняем все запросы параллельно
+        Promise.all([contactsRequest, linksRequest])
+            .then(([contactsResponse, linksResponse]) => {
+                setContacts(contactsResponse.data);
                 setLinks(linksResponse.data);
                 setLoading(false);
-            } catch (err) {
-                setError(err);
+            })
+            .catch((error) => {
+                setError(error);
                 setLoading(false);
-            }
-        };
+            });
+    }, []);
 
-        fetchContact();
-    }, [contactId, contactName]); // Зависимости от параметров
-
+    // Отображение состояния загрузки
     if (loading) return <div>Загрузка...</div>;
+
+    // Отображение ошибки
     if (error) return <div>Ошибка: {error.message}</div>;
 
-    return (
-        <div className="footer_section">
-            <div className="fix_block">
-                <div className="my-10 flex flex-wrap justify-around">
-                    <div className="p-5">
-                        <div className="">Контакты:</div>
-                        {contact && contact.length > 0 ? (
-                            contact.map(item => (
-                                <div key={item.id} className="">
-                                    {item.contact}
-                                    {item.name && <span> ({item.name})</span>}
-                                </div>
-                            ))
-                        ) : (
-                            <div>Контакт не найден</div>
-                        )}
-                    </div>
-                    <div className="p-5 flex">
-                        {links.map(item => (
-                            <div key={item.url} className="">
-                                <div className="p-2">
-                                    <a href={item.url} target="_blank" rel="noopener noreferrer">
-                                        <i className={item.icon}></i>
-                                    </a>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+
+
+    return res({contacts, links})
 }

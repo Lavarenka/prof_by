@@ -1,4 +1,4 @@
-import './ForWhomComponent.css'
+import './ForWhomSection.css'
 
 
 

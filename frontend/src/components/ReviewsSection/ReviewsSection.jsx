@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ReviewsSection.css'
 import { Carousel } from 'antd';
-import user_1 from './img_review/user_1.png'
 import axios from 'axios';
 
 
@@ -24,7 +23,7 @@ export default function ReviewsSection() {
                     image: item.image
                         ? item.image.startsWith('http')
                             ? item.image
-                            : `http://${item.image}` // Добавляем http://
+                            : `http://${item.image}` // add http://
                         : null
                 }));
                 setData(formattedData);
@@ -46,11 +45,6 @@ export default function ReviewsSection() {
                 <div className="my-10 flex  justify-center"><h2 className='text-xl font-semibold'>Отзывы</h2></div>
                 <div className="">
                     <Carousel arrows autoplay infinite={true} dots={false}>
-
-
-
-
-
                         {data.map((item) => (
                             <div key={item.id}>
                                 <div >

@@ -1,9 +1,4 @@
-import {useState} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import {Card, Space} from 'antd';
 import HeaderSection from "./components/HeaderSection/HeaderSection.jsx";
-import FadeRightComponent from "./components/FadeComponent.jsx";
 import AboutUsSection from "./components/AboutUsSection/AboutUsSection.jsx";
 import HowItSection from "./components/HowItSection/HowItSection.jsx";
 import ProfessionsSection from "./components/ProfessionsSection/ProfessionsSection.jsx";
@@ -11,7 +6,6 @@ import ForWhomSection from "./components/ForWhomSection/ForWhomSection.jsx";
 import ReviewsSection from "./components/ReviewsSection/ReviewsSection.jsx";
 import FormSection from "./components/FormSection/FormSection.jsx";
 import FooterSection from "./components/FooterSection/FooterSection.jsx";
-import ContactsList from './components/ApiContactSection/ApiContactSection.jsx';
 
 
 function App() {
@@ -27,7 +21,7 @@ function App() {
             <ReviewsSection/>
             <FormSection/>
             <FooterSection/>
-            {/* <ContactsList contactId="e3e08a65-8835-4d36-8fde-3cd8eb87b2dc" /> */}
+            
 
 
         </div>

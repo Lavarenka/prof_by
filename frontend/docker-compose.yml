@@ -11,7 +11,7 @@ services:
       - VITE_API_URL=/api
   
   backend:
-    image: profby_bknd-web-1
+    image: web
     ports:
       - "8000:8000"
     # другие настройки вашего бекенда

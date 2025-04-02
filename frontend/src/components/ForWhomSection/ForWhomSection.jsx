@@ -2,10 +2,11 @@ import './ForWhomSection.css'
 import for_who_img1 from '../ForWhomSection/k52friendship.jpg'
 import for_who_img2 from '../ForWhomSection/k87t09325sq.jpg'
 import for_who_img3 from '../ForWhomSection/nikmacmillan280300.jpg'
-import HoverImageWithText from "../ForWhomComponent.jsx";
+import HoverImageWithText from "./ForWhomComponent.jsx";
 import {Button} from "antd";
 
 export default function ForWhomSection() {
+    
     return (
         <div className="for-who-section p-5 md:py-10" id="ForWho">
             <div className="fix_block">
