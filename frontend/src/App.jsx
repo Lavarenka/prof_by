@@ -22,8 +22,6 @@ function App() {
             <FormSection/>
             <FooterSection/>
             
-
-
         </div>
     )
 }

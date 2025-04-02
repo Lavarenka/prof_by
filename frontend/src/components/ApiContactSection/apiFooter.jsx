@@ -16,11 +16,7 @@ export default function res({contacts, links}){
                             <div  key={item.id}>
                                 <div className="p-2"> <a href={item.url}> <i className={item.icon}></i></a></div>
                             </div>
-
                         )}
-                        {/* <div className="">Ссылка на ВА: +375 29 860 72 64</div>
-                        <div className="">Ссылка на Вайбер: +375 29 521 47 06</div>
-                        <div className="">Ссылка на телеграм: +375 29 521 47 06</div> */}
                     </div>
                 </div>
             </div>

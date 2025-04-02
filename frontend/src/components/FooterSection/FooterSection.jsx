@@ -2,29 +2,35 @@ import './FooterSection.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function FooterSection2() {
+export default function FooterSection() {
     const [contacts, setContacts] = useState([]);
     const [links, setLinks] = useState([]);
     const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки
     const [error, setError] = useState(null); // Состояние для хранения ошибок
 
     useEffect(() => {
-        // Создаем массив запросов
-        const contactsRequest = axios.get('/api/contacts/');
-        const linksRequest = axios.get('/api/contacts/links/');
-
-        // Выполняем все запросы параллельно
-        Promise.all([contactsRequest, linksRequest])
-            .then(([contactsResponse, linksResponse]) => {
+        // Создаем асинхронную функцию для загрузки данных
+        const fetchFooterData = async () => {
+            try {
+                // Параллельно выполняем оба запроса
+                const [contactsResponse, linksResponse] = await Promise.all([
+                    axios.get('/api/contacts/'),
+                    axios.get('/api/contacts/links/')
+                ]);
+                
                 setContacts(contactsResponse.data);
                 setLinks(linksResponse.data);
+            } catch (err) {
+                setError(err);
+                console.error('Ошибка при загрузке данных футера:', err);
+            } finally {
                 setLoading(false);
-            })
-            .catch((error) => {
-                setError(error);
-                setLoading(false);
-            });
+            }
+        };
+
+        fetchFooterData();
     }, []);
+
 
     // Отображение состояния загрузки
     if (loading) return <div>Загрузка...</div>;
