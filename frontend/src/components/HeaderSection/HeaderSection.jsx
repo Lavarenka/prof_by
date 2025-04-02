@@ -6,7 +6,7 @@ import MenuComponent from "./MenuComponent.jsx";
 export default function HeaderSection() {
     return (
         <div className="header  ">
-            <div className="right_color_block  "></div>
+           
             <div className="fix_block ">
                 <div className="header__container ">
                     <div className="header__top md:flex  py-2 items-center  ">

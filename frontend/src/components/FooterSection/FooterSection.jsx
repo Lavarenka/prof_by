@@ -2,7 +2,7 @@ import './FooterSection.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function FooterSection() {
+export default function FooterSection2() {
     const [contacts, setContacts] = useState([]);
     const [links, setLinks] = useState([]);
     const [loading, setLoading] = useState(true); // Состояние для отслеживания загрузки
@@ -41,12 +41,12 @@ export default function FooterSection() {
                     <div className="p-5">
                         <div className="">Контакты:</div>
                         {contacts.map((item) => (
-                            <div className="">{item.contact}</div>
+                            <div key={item.id}>{item.contact}</div>
                         ))}
                     </div>
                     <div className="p-5 flex ">
                         {links.map((item) =>
-                            <div className="">
+                            <div  key={item.id}>
                                 <div className="p-2"> <a href={item.url}> <i className={item.icon}></i></a></div>
                             </div>
 

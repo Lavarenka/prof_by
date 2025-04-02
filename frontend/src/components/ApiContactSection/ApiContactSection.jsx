@@ -1,62 +1,80 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function UrlApi() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function FooterSection({ contactId, contactName }) {
+    const [contact, setContact] = useState(null);
+    const [links, setLinks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const apiUrl = 'http://localhost:8000/api/reviews/';
-    
-    axios.get(apiUrl)
-      .then((response) => {
-        // Форматируем URL изображений
-        const formattedData = response.data.map(item => ({
-          ...item,
-          image: item.image 
-            ? item.image.startsWith('http') 
-              ? item.image 
-              : `http://${item.image}` // Добавляем http://
-            : null
-        }));
-        setData(formattedData);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
+    useEffect(() => {
+        // Функция для получения контакта
+        const fetchContact = async () => {
+            try {
+                let contactData;
+                
+                // Определяем какой запрос делать
+                if (contactId) {
+                    const response = await axios.get(`/api/contacts/${contactId}/`);
+                    contactData = [response.data];
+                } 
+                else if (contactName) {
+                    const response = await axios.get(`/api/contacts/?name=${contactName}`);
+                    contactData = response.data;
+                } 
+                else {
+                    const response = await axios.get('/api/contacts/');
+                    contactData = response.data;
+                }
 
-  if (loading) return <div>Загрузка...</div>;
-  if (error) return <div>Ошибка: {error.message}</div>;
-  if (!data) return <div>Нет данных</div>;
+                // Получаем ссылки
+                const linksResponse = await axios.get('/api/contacts/links/');
+                
+                setContact(contactData);
+                setLinks(linksResponse.data);
+                setLoading(false);
+            } catch (err) {
+                setError(err);
+                setLoading(false);
+            }
+        };
 
-  return (
-    <div>
-      <h1>Отзывы</h1>
-      {data.map((item) => (
-        <div key={item.id} >
-          {item.image && (
-            <img 
-              src={item.image}
-              alt={`Фото ${item.name}`}
-              
-              onError={(e) => {
-                console.error('Не удалось загрузить изображение:', e.target.src);
-                e.target.src = 'https://via.placeholder.com/200';
-                e.target.style.border = '2px solid #ff0000'; // Красная рамка при ошибке
-              }}
-            />
-          )}
-          <div style={{ textAlign: 'left' }}>
-            <p><strong>Имя:</strong> {item.name}</p>
-            <p><strong>Профессия:</strong> {item.profession}</p>
-            <p><strong>Отзыв:</strong> {item.review}</p>
-          </div>
+        fetchContact();
+    }, [contactId, contactName]); // Зависимости от параметров
+
+    if (loading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка: {error.message}</div>;
+
+    return (
+        <div className="footer_section">
+            <div className="fix_block">
+                <div className="my-10 flex flex-wrap justify-around">
+                    <div className="p-5">
+                        <div className="">Контакты:</div>
+                        {contact && contact.length > 0 ? (
+                            contact.map(item => (
+                                <div key={item.id} className="">
+                                    {item.contact}
+                                    {item.name && <span> ({item.name})</span>}
+                                </div>
+                            ))
+                        ) : (
+                            <div>Контакт не найден</div>
+                        )}
+                    </div>
+                    <div className="p-5 flex">
+                        {links.map(item => (
+                            <div key={item.url} className="">
+                                <div className="p-2">
+                                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                                        <i className={item.icon}></i>
+                                    </a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
         </div>
-      ))}
-    </div>
-  );
+    );
 }

@@ -1,8 +1,5 @@
 node_modules
 dist
 .env
-.git
-.gitignore
-*.md
 .DS_Store
-docker-compose.yml
+.git

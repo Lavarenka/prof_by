@@ -24,29 +24,24 @@ import { resolve } from 'path'
 
 
 export default defineConfig({
-    plugins: [react(),
-    tailwindcss(),
-
+    plugins: [
+        react(),
+        tailwindcss(),
     ],
-    build: {
-        chunkSizeWarningLimit: 1500,
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes('node_modules')) {
-                        return id.toString().split('node_modules/')[1].split('/')[0]
-                    }
-                }
-            }
-        }
-    },
     server: {
         host: true,
         port: 3000,
+        // proxy: {
+        //     '/api': {
+        //         target: 'http://127.0.0.1:8000',
+        //         changeOrigin: true,
+        //         rewrite: (path) => path.replace(/^\/api/, '')
+        //     }
         proxy: {
             '/api': 'http://127.0.0.1:8000',
             '/images': 'http://127.0.0.1:8000'
-          }
+        }
+        
     },
 
 })

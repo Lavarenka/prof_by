@@ -52,9 +52,9 @@ export default function ReviewsSection() {
 
 
                         {data.map((item) => (
-                            <div>
-                                <div className="">
-                                    <div className=" image-container_review  m-auto my-5">{item.image && (
+                            <div key={item.id}>
+                                <div >
+                                    <div  className=" image-container_review  m-auto my-5">{item.image && (
                                         <img
                                             src={item.image}
                                             alt={`Фото ${item.name}`}

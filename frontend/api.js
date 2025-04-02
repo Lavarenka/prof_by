@@ -4,3 +4,5 @@ const api = axios.create({
       'Content-Type': 'application/json',
     },
   });
+
+const response = await fetch(`${import.meta.env.VITE_API_URL}/your-endpoint`);

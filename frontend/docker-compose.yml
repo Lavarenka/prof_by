@@ -1,9 +1,17 @@
 version: '3.8'
+
 services:
   frontend:
-    services:
-      frontend:
-        build:
-          context: .
-          dockerfile: Dockerfile
-        platform: linux/amd64  # Явное указание платформы
+    build: .
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=/api
+  
+  backend:
+    image: profby_bknd-web-1
+    ports:
+      - "8000:8000"
+    # другие настройки вашего бекенда
