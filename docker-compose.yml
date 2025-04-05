@@ -1,14 +1,5 @@
 version: "3.9"
 services:
-  web:
-    build: ./app
-    volumes:
-      - ./app/:/app/
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
   db:
     image: postgres:14.8-alpine3.18
     volumes:
@@ -17,12 +8,25 @@ services:
       - .db.env
     ports:
       - "5432:5432"
+  web:
+    build: ./app
+    volumes:
+      - ./app/:/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: sh -c "alembic upgrade head && gunicorn --worker-class uvicorn.workers.UvicornWorker --workers $$(( 2 * $$(nproc) + 1 )) --bind 0.0.0.0:$${PORT} --timeout 120 --keep-alive 5 --access-logfile - --error-logfile - main:app"
+
   ui:
     build: ./frontend
-    
+    volumes:
+      - ./frontend:/app # Монтируем папку с кодом
+      - /app/node_modules # Исключаем перезапись node_modules
     ports:
       - "80:80"
-    
     depends_on:
       - web
     environment:

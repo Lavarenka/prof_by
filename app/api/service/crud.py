@@ -1,11 +1,16 @@
+from datetime import datetime
 from typing import TypeVar, Generic, Type
 
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import joinedload, selectinload
+from sqlalchemy.orm import joinedload
 
-from src.models import Contact, SocialLink, Review, Profession, Section
+import telebot
+from telegram.error import TelegramError
+
+from src.settings import settings
+from src.models import Contact, SocialLink, Review, Profession, Section, Client
 
 # Generic type for model
 ModelType = TypeVar("ModelType")
@@ -45,6 +50,7 @@ review_service = BaseService(Review)
 profession_service = BaseService(Profession)
 
 
+# Special service for sections with load joined content
 class SectionService(BaseService):
     """Special Service for sections with load joined content"""
 
@@ -62,5 +68,57 @@ class SectionService(BaseService):
         except SQLAlchemyError as e:
             raise Exception(f"Database error: {str(e)}") from e
 
+
 # Initialize especial service for sections
 content_service = SectionService(Section)
+
+
+# Special service for clients
+class ClientService(Generic[ModelType]):
+    """Special Service for clients"""
+
+    def __init__(self, model):
+        # Initialize model
+        self.model = model
+
+    async def create_client(
+        self, client: dict, session: AsyncSession
+    ) -> bool | Exception:
+        """Create new client from dict and commit to database"""
+        # Try to create client
+        try:
+            name, phone, message = (
+                client.get("name", "Неизвестный"),
+                client.get("phone"),
+                client.get("message"),
+            )
+            stmt = self.model(name=name, phone=phone, message=message)
+            session.add(stmt)
+            await session.commit()
+
+            # Send notification
+            await self.create_tg_notification(name, phone, message)
+            return True
+        except SQLAlchemyError as e:
+            raise Exception(f"Database error: {str(e)}")
+
+    async def create_tg_notification(self, name: str, phone: str, message: str):
+        try:
+            # Init TG bot and TG chat
+            message = (
+                "🆕 Новый клиент:\n"
+                f"👤 Имя: {name}\n"
+                f"📞 Телефон: {phone}\n"
+                f"📝 Примечание: {message}\n"
+                f"⏰ Время: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+            )
+            bot = telebot.TeleBot(token=settings.BOT_TOKEN)
+            chat_id = settings.CHAT_ID
+            bot.send_message(chat_id=chat_id, text=message)
+
+        except TelegramError as e:
+            print(f"Telegram notification failed: {str(e)}")
+
+
+# Initialize especial service for clients
+client_service = ClientService(Client)

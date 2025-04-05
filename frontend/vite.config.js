@@ -9,22 +9,14 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
-        host: true,  // Доступ с других устройств в сети
-        port: 3000,
-        // proxy: {
-        //   '/api': {
-        //     target: 'http://web:8000',  // Используем имя сервиса из docker-compose
-        //     changeOrigin: true,
-        //     secure: false,
-        //     rewrite: (path) => path.replace(/^\/api/, '')
-        //   },
-        //   '/images': {
-        //     target: 'http://web:8000',
-        //     changeOrigin: true,
-        //     secure: false
-        //   }
-        // }
-        
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8000', // Теперь указываем localhost с портом
+                changeOrigin: true,
+                rewrite: (path) => path.replace(8000,/^\/api/, ''),
+                secure: false
+            }
+        }
     },
     // Оптимизация для Docker
     preview: {

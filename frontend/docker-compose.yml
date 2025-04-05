@@ -5,6 +5,8 @@ services:
     build: .
     ports:
       - "3000:80"
+    networks:
+      - app-network  
     depends_on:
       - backend
     environment:
@@ -14,4 +16,11 @@ services:
     image: web
     ports:
       - "8000:8000"
+    networks:
+      - app-network    
     # другие настройки вашего бекенда
+
+
+networks:
+  app-network:
+    driver: bridge    

@@ -14,8 +14,8 @@ export default function FooterSection() {
             try {
                 // Параллельно выполняем оба запроса
                 const [contactsResponse, linksResponse] = await Promise.all([
-                    axios.get(`http://localhost:8000/api/contacts/`),
-                    axios.get(`http://localhost:8000/api/contacts/links/`),
+                    axios.get('http://localhost:8000/api/contacts/'),
+                    axios.get('http://localhost:8000/api/contacts/links/'),
                     // axios.get(`${import.meta.env.VITE_API_URL}/contacts/links/`)
                     
                 ]);
