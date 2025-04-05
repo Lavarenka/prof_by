@@ -22,9 +22,6 @@ services:
 
   ui:
     build: ./frontend
-    volumes:
-      - ./frontend:/app # Монтируем папку с кодом
-      - /app/node_modules # Исключаем перезапись node_modules
     ports:
       - "80:80"
     depends_on:
