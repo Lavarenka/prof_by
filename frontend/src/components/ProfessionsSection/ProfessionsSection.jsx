@@ -13,7 +13,7 @@ export default function ProfessionsSection() {
 
 
     useEffect(() => {
-        const apiUrl = '/api/professions/';
+        const apiUrl = `http://localhost:8000/api/professions/`;
 
         axios.get(apiUrl)
             .then((response) => {
@@ -51,27 +51,27 @@ export default function ProfessionsSection() {
                 <div className="grid md:grid-cols-5 md:gap-5 grid-cols-2 gap-2 ">
 
                     {data.map((item, index) => (
-                        
 
-                            <FadeComponent key={item.id} direction="bottom" delay={100 + (index * 50)}>
 
-                                <div className="m-auto my-3" >
-                                    <div className="max-w-20 m-auto max-h-20  md:max-w-40 md:max-h-40 ">
-                                        <img
-                                            src={item.image}
-                                            alt={`Фото ${item.name}`}
+                        <FadeComponent key={item.id} direction="bottom" delay={100 + (index * 50)}>
 
-                                            onError={(e) => {
-                                                console.error('Не удалось загрузить изображение:', e.target.src);
-                                                e.target.src = 'https://via.placeholder.com/200';
-                                                e.target.style.border = '2px solid #ff0000'; // Красная рамка при ошибке
-                                            }}
-                                        />
+                            <div className="m-auto my-3" >
+                                <div className="max-w-20 m-auto max-h-20  md:max-w-40 md:max-h-40 ">
+                                    <img
+                                        src={item.image}
+                                        alt={`Фото ${item.name}`}
 
-                                    </div>
-                                    <div className="text-center"><p>{item.name}</p></div>
+                                        onError={(e) => {
+                                            console.error('Не удалось загрузить изображение:', e.target.src);
+                                            e.target.src = 'https://via.placeholder.com/200';
+                                            e.target.style.border = '2px solid #ff0000'; // Красная рамка при ошибке
+                                        }}
+                                    />
+
                                 </div>
-                       
+                                <div className="text-center"><p>{item.name}</p></div>
+                            </div>
+
                         </FadeComponent>
 
                     ))}
@@ -79,13 +79,13 @@ export default function ProfessionsSection() {
 
 
 
-            </div>
-            <div className="my-5 text-center"><h2>Вы можете предложить свой вариант</h2></div>
-            <div className="flex  justify-center">
-                <a href="#form"><Button className="md:w-100 ">Участвую</Button></a>
+                </div>
+                <div className="my-5 text-center"><h2>Вы можете предложить свой вариант</h2></div>
+                <div className="flex  justify-center">
+                    <a href="#form"><Button className="md:w-100 ">Участвую</Button></a>
 
+                </div>
             </div>
-        </div>
         </div >
     )
 }

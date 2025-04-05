@@ -13,8 +13,7 @@ export default function ReviewsSection() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const apiUrl = '/api/reviews/';
-
+        const apiUrl = `http://localhost:8000/api/reviews/`;
         axios.get(apiUrl)
             .then((response) => {
                 // Форматируем URL изображений
@@ -48,7 +47,7 @@ export default function ReviewsSection() {
                         {data.map((item) => (
                             <div key={item.id}>
                                 <div >
-                                    <div  className=" image-container_review  m-auto my-5">{item.image && (
+                                    <div className=" image-container_review  m-auto my-5">{item.image && (
                                         <img
                                             src={item.image}
                                             alt={`Фото ${item.name}`}

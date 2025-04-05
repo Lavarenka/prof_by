@@ -1,37 +1,45 @@
-# FROM node:18-bullseye-slim AS builder  
+# FROM node:18-alpine
+
 # WORKDIR /app
 
-# # Установка зависимостей с очисткой кеша
 # COPY package*.json ./
-# RUN rm -rf package-lock.json node_modules && \
-#     npm install 
+
+# RUN npm install
 
 # COPY . .
-# RUN npm run build
 
-# FROM nginx:alpine
-# COPY --from=builder /app/dist /usr/share/nginx/html
+# EXPOSE 3000
 
-# Шаг 1: Сборка приложения
-FROM node:18-alpine AS builder
+# CMD ["npm", "run", "dev"]
+
+# Этап сборки
+FROM node:18-alpine as build
+
 WORKDIR /app
 
-# Копируем зависимости
-COPY package.json package-lock.json ./
-RUN npm ci
+# Копируем package.json и package-lock.json
+COPY package*.json ./
 
-# Копируем исходный код и собираем
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем все файлы проекта
 COPY . .
+
+# Собираем приложение
 RUN npm run build
 
-# Шаг 2: Запуск через Nginx
+# Этап запуска
 FROM nginx:alpine
 
-# Копируем собранное приложение
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Копируем собранное приложение в nginx
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Копируем конфиг Nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Копируем конфиг nginx (если нужно)
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Открываем порт 80
 EXPOSE 80
+
+# Запускаем nginx
 CMD ["nginx", "-g", "daemon off;"]

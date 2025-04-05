@@ -17,8 +17,8 @@ export default function HeaderSection() {
             try {
                 // Параллельно выполняем оба запроса
                 const [contactsResponse, linksResponse] = await Promise.all([
-                    axios.get('/api/content/'),
-                    axios.get('/api/contacts/links/')
+                    axios.get(`http://localhost:8000/api/content/`),
+                    axios.get(`http://localhost:8000/api/contacts/links/`)
                 ]);
 
                 setContacts(contactsResponse.data);
