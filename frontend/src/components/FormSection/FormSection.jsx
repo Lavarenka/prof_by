@@ -67,7 +67,7 @@ export default function FormSection() {
             setNotification({
                 show: true,
                 type: 'success',
-                message: response.data?.description || 'Данные успешно отправлены!'
+                message: 'Данные успешно отправлены!'
             });
             setFormData({ name: '', phone: '+375', message: '' });
 
