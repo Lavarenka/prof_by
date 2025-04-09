@@ -1,13 +1,43 @@
 import { Button } from "antd";
 import "./HeaderSection.css"
 import MenuComponent from "./MenuComponent.jsx";
-import ContactLinksApi from "../../API/ContactsLinksApi.jsx";
-import ContentsApi from "../../API/ContentApi.jsx";
+import { Spin, Alert, Row, Col } from 'antd';
+import { useContactLinks } from '../../hooks/useContactLinks'
+import { useContent } from '../../hooks/useContent'
+
 
 
 
 
 export default function HeaderSection() {
+    const {
+        data: links,
+        isLoading: isLinksLoading,
+        error: linksError
+    } = useContactLinks();
+
+    const {
+        data: contents,
+        isLoading: isContentLoading,
+        error: contentError
+    } = useContent();
+
+    // Состояния загрузки и ошибок
+    const isLoading = isLinksLoading || isContentLoading;
+    const error = linksError || contentError;
+
+    if (isLoading) return (
+        <div className="flex justify-center items-center h-[200px]">
+            <Spin size="large" />
+        </div>
+    );
+    if (error) return <Alert message={`Ошибка: ${error.message}`} type="error" />;
+
+
+
+
+
+
     return (
         <div className="header  ">
             <div className="fix_block ">
@@ -18,19 +48,16 @@ export default function HeaderSection() {
                                 <div className="w-12 "><MenuComponent /></div>
                             </div>
                             <div className="flex flex-auto  px-2 items-center">
-                                {/* {links.map((item) =>
+                                {links?.map((item) =>
                                     <div key={item.id} className='top_header__social flex '>
                                         <div className="p-2"> <a href={item.url}> <i className={item.icon} > </i></a></div>
                                     </div>
-                                )} */}
-                                <ContactLinksApi />
-                                <ContentsApi />
-                                {/* 
-                                {contacts.map((contact) =>
-                                    <div key={contact.id} className='top_header__contacts flex items-center justify-center'>
-                                        <p className="oldstyle-nums">{contact.title} </p>
+                                )}
+                                {contents.map((content) =>
+                                    <div key={content.id} className='flex items-center justify-center'>
+                                        <p className="oldstyle-nums">{content.title} </p>
                                     </div>
-                                )} */}
+                                )}
                             </div>
                         </div>
                         <div
@@ -40,22 +67,18 @@ export default function HeaderSection() {
                             </div>
                         </div>
                         <div className=" hidden md:flex flex-auto md:justify-end justify-center  px-2 ">
-                            {/* {links.map((item) =>
 
-                                <div key={item.id} className='top_header__social flex '>
-
-                                    <div className="p-2"> <a href={item.url}> <i className={item.icon} > </i></a></div>
-
+                            {links?.map((link) =>
+                                <div key={link.id} className='top_header__social flex '>
+                                    <div className="p-2"> <a href={link.url}> <i className={link.icon} > </i></a></div>
                                 </div>
-
                             )}
-                            {contacts.map((contact) =>
-                                <div key={contact.id} className='top_header__contacts flex items-center justify-center'>
-                                    <p className="oldstyle-nums">{contact.title} </p>
+                            {contents.map((content) =>
+                                <div key={content.id} className='flex items-center justify-center'>
+                                    <p className="oldstyle-nums">{content.title} </p>
                                 </div>
-                            )} */}
-                            <ContactLinksApi />
-                            <ContentsApi />
+                            )}
+
 
                         </div>
                     </div>
