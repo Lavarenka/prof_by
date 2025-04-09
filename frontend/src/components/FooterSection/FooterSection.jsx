@@ -43,7 +43,7 @@ export default function FooterSection() {
                     </div>
                     <div className="p-5 flex ">
                         {links?.map((item) =>
-                            <div key={item.id}>
+                            <div key={item.id} className='mx-1'>
                                 <a href={item.url}> <i className={item.icon}></i></a>
                             </div>
 

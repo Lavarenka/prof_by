@@ -32,12 +32,6 @@ export default function HeaderSection() {
         </div>
     );
     if (error) return <Alert message={`Ошибка: ${error.message}`} type="error" />;
-
-
-
-
-
-
     return (
         <div className="header  ">
             <div className="fix_block ">
@@ -47,14 +41,16 @@ export default function HeaderSection() {
                             <div className="  md:hidden  flex flex-auto ">
                                 <div className="w-12 "><MenuComponent /></div>
                             </div>
-                            <div className="flex flex-auto  px-2 items-center">
+                            <div className="flex -auto flex-col px-2 items-center">
+                                <div className="flex ">
                                 {links?.map((item) =>
                                     <div key={item.id} className='top_header__social flex '>
-                                        <div className="p-2"> <a href={item.url}> <i className={item.icon} > </i></a></div>
+                                        <div className="p-2 flex-row flex"> <a href={item.url}> <i className={item.icon} > </i></a></div>
                                     </div>
                                 )}
+                                </div>
                                 {contents.map((content) =>
-                                    <div key={content.id} className='flex items-center justify-center'>
+                                    <div key={content.id} className='flex  items-center justify-center'>
                                         <p className="oldstyle-nums">{content.title} </p>
                                     </div>
                                 )}

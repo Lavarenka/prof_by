@@ -1,9 +1,8 @@
 import './ForWhomSection.css'
-import for_who_img1 from '../ForWhomSection/k52friendship.jpg'
-import for_who_img2 from '../ForWhomSection/k87t09325sq.jpg'
-import for_who_img3 from '../ForWhomSection/nikmacmillan280300.jpg'
+
 import HoverImageWithText from "./ForWhomComponent.jsx";
 import {Button} from "antd";
+import { forWhoImages } from './ForWhoImg/assets.jsx'; 
 
 export default function ForWhomSection() {
     
@@ -19,37 +18,37 @@ export default function ForWhomSection() {
                 <div className="flex my-10 flex-wrap">
                     <div className="  flex my-2 flex-auto justify-center">
                         <HoverImageWithText
-                            imageUrl={for_who_img1} // URL изображения
+                            imageUrl={forWhoImages.img1} // URL изображения
                             text="Тем, кто хочет сменить деятельность и пока еще мало знаком с новой профессией" // Текст
                         />
                     </div>
                     <div className="flex flex-auto  my-2  justify-center">
                         <HoverImageWithText
-                            imageUrl={for_who_img2} // URL изображения
+                            imageUrl={forWhoImages.img2} // URL изображения
                             text="Именно вам, если любите узнавать новое и хотели бы интересно провести время, став на несколько часов SMM-специалистом, столяром, визажистом или кем-либо другим." // Текст
                         />
                     </div>
                     <div className="flex flex-auto my-2  justify-center">
                         <HoverImageWithText
-                            imageUrl={for_who_img3} // URL изображения
+                            imageUrl={forWhoImages.img3} // URL изображения
                             text="Если вы окончили курсы, но не хватило практики" // Текст
                         />
                     </div>
                     <div className="flex flex-auto my-2 justify-center">
                         <HoverImageWithText
-                            imageUrl={for_who_img1} // URL изображения
+                            imageUrl={forWhoImages.img4} // URL изображения
                             text="Профессионалам любой области, которые хотят провести день с коллегами своей же специальности. Или быть может получить международный опыт." // Текст
                         />
                     </div>
                     <div className="flex flex-auto my-2 justify-center">
                         <HoverImageWithText
-                            imageUrl={for_who_img2} // URL изображения
+                            imageUrl={forWhoImages.img5} // URL изображения
                             text="Путешественникам, которые оказались в другой стране и им любопытно провести день с местным представителем профессии." // Текст
                         />
                     </div>
                     <div className="flex flex-auto my-2 justify-center">
                         <HoverImageWithText
-                            imageUrl={for_who_img3} // URL изображения
+                            imageUrl={forWhoImages.img6} // URL изображения
                             text="Тем, кто хочет сделать нестандартный подарок для своих близких, друзей, коллег —  предлагаем сертификат." // Текст
                         />
                     </div>
