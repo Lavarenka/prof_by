@@ -78,7 +78,7 @@
         padding: 3px ;
     }
 }
-@media (max-width: 400px) {
+@media (max-width: 300px) {
     .image-container {
         width: 200px;
         height: 200px;

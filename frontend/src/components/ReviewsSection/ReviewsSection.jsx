@@ -1,4 +1,3 @@
-
 import './ReviewsSection.css'
 import { Carousel, Spin, Alert } from 'antd';
 import { useReviews } from '../../hooks/useReviews';
@@ -13,9 +12,9 @@ export default function ReviewsSection() {
 
 
     if (isLoading) return (
-    <div className="flex justify-center items-center h-[200px]">
-        <Spin size="large" />
-    </div>
+        <div className="flex justify-center items-center h-[200px]">
+            <Spin size="large" />
+        </div>
     );
     if (error) return <Alert message={`Ошибка: ${error.message}`} type="error" />;
 
@@ -33,10 +32,7 @@ export default function ReviewsSection() {
                                             src={review.image}
                                             alt={`Фото ${review.name}`}
 
-                                            onError={(e) => {
-                                                e.target.src = 'https://via.placeholder.com/200';
-                                                e.target.classList.add('error-image');
-                                            }}
+                                            onError={(e) => e.target.style.display = 'none'}
                                         />
                                     )}</div>
                                     <div className="px-5">
@@ -58,3 +54,6 @@ export default function ReviewsSection() {
         </div>
     )
 }
+
+
+

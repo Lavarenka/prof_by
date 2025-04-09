@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,6 +24,18 @@ app.mount(
     StaticFiles(directory="./images"),
     name="images"
 )
+
+@app.middleware("http")
+async def add_process_time_header(request: Request, call_next):
+    response = await call_next(request)
+    if request.url.hostname == '127.0.0.1':
+        # Заменяем localhost на внешний IP в JSON ответах
+        if response.headers.get("content-type") == "application/json":
+            body = await response.body()
+            body = body.replace(b'http://127.0.0.1:8000', b'http://5.129.206.62:8000')
+            response.body = body
+            response.headers["content-length"] = str(len(body))
+    return response
 
 # Add CORS middleware
 app.add_middleware(

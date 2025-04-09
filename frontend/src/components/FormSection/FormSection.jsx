@@ -54,7 +54,7 @@ export default function FormSection() {
             formPayload.append('message', formData.message || "Без примечания");
 
             const response = await axios.post(
-                'http://localhost:8000/api/clients/',
+                'http://5.129.206.62:8000/api/clients/',
                 formPayload.toString(),
                 {
                     headers: {

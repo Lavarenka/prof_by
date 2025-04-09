@@ -23,5 +23,5 @@ class ReviewSchema(ReviewBase):
     @field_validator("image")
     def format_image(cls, v):
         """Format image url by add into start url, looks like hardcode"""
-        v = settings.URL + '/' + v
+        v = settings.BASE_URL + '/' + v
         return v

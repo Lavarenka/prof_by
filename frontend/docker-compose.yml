@@ -2,25 +2,29 @@ version: '3.8'
 
 services:
   frontend:
-    build: .
+    build:
+      context: ./frontend  # Указываем папку с фронтендом
+      dockerfile: Dockerfile
     ports:
       - "3000:80"
+    volumes:
+      - ./frontend/public:/usr/share/nginx/html/public  # Для статики
     networks:
-      - app-network  
-    depends_on:
-      - backend
+      - app-network
     environment:
       - VITE_API_URL=/api
-  
+
   backend:
+    environment:
+      - BASE_URL=http://5.129.206.62:8000 
     image: web
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend/static:/app/static  # Для статики бекенда
     networks:
-      - app-network    
-    # другие настройки вашего бекенда
-
+      - app-network
 
 networks:
   app-network:
-    driver: bridge    
+    driver: bridge

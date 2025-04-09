@@ -3,28 +3,29 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-
-    plugins: [
-        react(),
-        tailwindcss(),
-    ],
-    server: {
-        proxy: {
-            '/api': {
-                target: 'http://localhost:8000', // Теперь указываем localhost с портом
-                changeOrigin: true,
-                rewrite: (path) => path.replace(8000,/^\/api/, ''),
-                secure: false
-            }
-        }
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://backend:8000', // Используем имя сервиса из docker-compose
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        secure: false
+      },
+      '/images': { // Прокси для изображений
+        target: 'http://backend:8000',
+        changeOrigin: true,
+        secure: false
+      }
     },
-    // Оптимизация для Docker
-    preview: {
-        port: 3000,
-        host: true
-    }
-});
-
-
-
-
+    host: true, // Доступ с других устройств в сети
+    port: 3000
+  },
+  preview: {
+    port: 3000,
+    host: true
+  }
+})

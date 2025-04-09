@@ -9,6 +9,7 @@ class Settings:
     # Server settings
     URL: str = os.environ.get("URL")
     API_PREFIX: str = os.environ.get("API_PREFIX")
+    BASE_URL: str = "http://5.129.206.62:8000"
 
     # Storage settings (for fastapi_storage)
     REVIEWS_STORAGE: str = os.environ.get("REVIEWS_STORAGE")

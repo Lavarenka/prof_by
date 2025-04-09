@@ -15,7 +15,7 @@ const processReviewsData = (data) => {
 
     return {
       ...review,
-      image: imageUrl || 'https://via.placeholder.com/200',
+      image: imageUrl || null,
       hasImageError: !imageUrl, // Флаг ошибки, если изображения нет
       isFallback: !imageUrl
     };
@@ -35,7 +35,6 @@ export const useReviews = () => {
           {
             id: 'fallback',
             name: 'Не удалось загрузить отзывы',
-            image: 'https://via.placeholder.com/200',
             hasImageError: true,
             isFallback: true
           }
