@@ -3,4 +3,90 @@
 .for-who-section{
     background-color: #F0F0F0FF;
     font-weight: bold;
+    
+}
+
+
+.image-container {
+    position: relative;
+    width: 400px; /* Размер контейнера */
+    height: 300px;
+    overflow: hidden; /* Скрываем всё, что выходит за границы */
+    display: flex;
+}
+
+
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Чтобы изображение заполняло контейнер */
+    transition: transform 0.3s ease; /* Анимация увеличения */
+    
+}
+
+.image-container:hover .image {
+    transform: scale(1.1); /* Увеличение при наведении */
+    
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    transition: opacity 0.3s ease; /* Анимация появления */
+}
+
+.image-container:hover .overlay {
+    opacity: 1; /* Появляется при наведении */
+}
+
+.text {
+    color: white; /* Цвет текста */
+    font-size: 1.3rem; /* Размер текста */
+    text-align: center;
+    /* font-weight: bold; */
+    padding: 5px ;
+}
+
+
+/* Планшеты (ландшафт) */
+@media (max-width: 1024px) {
+    .image-container {
+        width: 350px;
+        height: 260px;
+    }
+}
+
+/* Планшеты (портрет) */
+@media (max-width: 768px) {
+    .image-container {
+        width: 300px;
+        height: 225px;
+    }
+    .text {
+        color: white; /* Цвет текста */
+        font-size: 1rem; /* Размер текста */
+
+        padding: 3px ;
+    }
+}
+@media (max-width: 400px) {
+    .image-container {
+        width: 200px;
+        height: 200px;
+    }
+    .text {
+        color: white; /* Цвет текста */
+        font-size: 0,8rem; /* Размер текста */
+
+        padding: 3px ;
+    }
 }

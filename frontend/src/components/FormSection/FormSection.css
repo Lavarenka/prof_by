@@ -66,3 +66,62 @@
     background-color: #fff;
     color: rgb(65, 59, 68);
 }
+
+
+
+/*---------------*/
+
+/* Стили для уведомлений */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(150%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  max-width: 300px;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification.success {
+  background-color: #4CAF50;
+  border-left: 5px solid #2E7D32;
+}
+
+.notification.error {
+  background-color: #F44336;
+  border-left: 5px solid #C62828;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 0 5px;
+}
+
+/* Анимация исчезновения перед закрытием */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.notification.hide {
+  animation: fadeOut 0.5s forwards;
+}

@@ -44,3 +44,11 @@
     width: 10px;
 }
 
+
+
+@media (max-width: 768px) {
+    .image-container_review {
+        width: 200px;
+        height: 200px;
+    }
+}

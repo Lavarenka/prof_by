@@ -1,9 +1,26 @@
 version: '3.8'
+
 services:
   frontend:
-    services:
-      frontend:
-        build:
-          context: .
-          dockerfile: Dockerfile
-        platform: linux/amd64  # Явное указание платформы
+    build: .
+    ports:
+      - "3000:80"
+    networks:
+      - app-network  
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=/api
+  
+  backend:
+    image: web
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network    
+    # другие настройки вашего бекенда
+
+
+networks:
+  app-network:
+    driver: bridge    
